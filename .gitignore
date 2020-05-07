@@ -14,4 +14,4 @@ npm-debug.log
 yarn-error.log
 .idea/
 .DS_Store
-resources/.DS_Store
+/resources/.DS_Store

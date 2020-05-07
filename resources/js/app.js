@@ -1,11 +1,13 @@
 import router from "./router";
+import Index from "./Index";
 
 require('./bootstrap');
 window.Vue = require('vue');
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
 const app = new Vue({
     el: '#app',
     router,
+    components: {
+        Index
+    },
 });

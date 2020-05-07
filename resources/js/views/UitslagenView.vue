@@ -1,10 +1,10 @@
 <template>
-    <P>About View</P>
+    <h1>Uitslagen View</h1>
 </template>
 
 <script>
     export default {
-        name: "About"
+        name: "Uitslagen"
     }
 </script>
 
