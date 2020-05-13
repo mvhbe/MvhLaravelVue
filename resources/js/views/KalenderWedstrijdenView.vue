@@ -1,16 +1,17 @@
 <template>
-    <view-card header="Uitslagen">
-        Todo : Uitslagen van de wedstrijden
+    <view-card header="Deze maand">
+        <p>Todo : Wedstrijden van kalender</p>
     </view-card>
 </template>
 
 <script>
     import ViewCard from "../components/ViewCard";
+
     export default {
-        name: "Uitslagen",
+        name: "KalenderWedstrijdenView",
         components: {
             ViewCard
-        },
+        }
     }
 </script>
 

@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "./views/HomeView";
 import KalendersView from "./views/KalendersView";
+import KalenderWedstrijdenView from "./views/KalenderWedstrijdenView";
 import UitslagenView from "./views/UitslagenView";
 
 Vue.use(VueRouter);
@@ -18,10 +19,15 @@ const routes = [
         component: KalendersView
     },
     {
-        path: "/uitslagen",
-        name: "uitslagen",
-        component: UitslagenView
+        path: "/kalenders/:jaar/wedstrijden",
+        name: "kalenderwedstrijden",
+        component: KalenderWedstrijdenView
     },
+    // {
+    //     path: "/uitslagen",
+    //     name: "uitslagen",
+    //     component: UitslagenView
+    // },
 ];
 
 const router = new VueRouter(
