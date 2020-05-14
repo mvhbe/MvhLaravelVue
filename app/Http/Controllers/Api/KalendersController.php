@@ -16,9 +16,6 @@ class KalendersController extends Controller
      */
     public function index()
     {
-//        return Kalender::all();
-//        return Kalender::paginate(5);
-//        return Kalender::simplePaginate(5);
         return KalenderResource::collection(Kalender::simplePaginate(10));
     }
 

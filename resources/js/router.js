@@ -23,11 +23,6 @@ const routes = [
         name: "kalenderwedstrijden",
         component: KalenderWedstrijdenView
     },
-    // {
-    //     path: "/uitslagen",
-    //     name: "uitslagen",
-    //     component: UitslagenView
-    // },
 ];
 
 const router = new VueRouter(

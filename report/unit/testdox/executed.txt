@@ -3,3 +3,12 @@ Kalenders Ophalen (Tests\Feature\Api\KalendersOphalen)
  [x] Een kalender aanwezig
  [x] Meerdere kalenders aanwezig
 
+Kalender (Tests\Unit\Kalender)
+ [x] Heeft een jaar
+ [x] Heeft opmerkingen
+ [x] Heeft een omschrijving
+ [x] Heeft een link
+ [x] Heeft jaar als route key name
+ [x] Opmerkingen is optioneel
+ [x] Jaar is uniek
+
