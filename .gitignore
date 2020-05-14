@@ -5,6 +5,7 @@
 /pubic/css/app.css
 /storage/*.key
 /vendor
+/report
 .env
 .env.backup
 .phpunit.result.cache
