@@ -13,7 +13,7 @@ class WedstrijdTest extends TestCase
     /** @test  */
     public function heeftEenDatum()
     {
-        $datum = date('d/m/Y');
+        $datum = date('Y-m-d');
         $wedstrijd = bewaarWedstrijd(['datum' => $datum]);
 
         $this->assertEquals($datum, $wedstrijd->datum);
@@ -24,7 +24,7 @@ class WedstrijdTest extends TestCase
     {
         $this->expectException(QueryException::class);
 
-        $datum = date('d/m/Y');
+        $datum = date('Y-m-d');
 
         bewaarWedstrijd(['datum' => $datum]);
         bewaarWedstrijd(['datum' => $datum]);
@@ -94,7 +94,7 @@ class WedstrijdTest extends TestCase
     /** @test  */
     public function heeftEenAanvang()
     {
-        $aanvang = date('H:i');
+        $aanvang = date('H:i:s');
         $wedstrijd = bewaarWedstrijd(['aanvang' => $aanvang]);
 
         $this->assertEquals($aanvang, $wedstrijd->fresh()->aanvang);
@@ -103,7 +103,7 @@ class WedstrijdTest extends TestCase
     /** @test  */
     public function heeftEenLink()
     {
-        $datum = date('d/m/Y');
+        $datum = date('Y-m-d');
         $wedstrijd = maakWedstrijd(['datum' => $datum]);
         $link = '/wedstrijden/' . $wedstrijd->id;
 
@@ -117,26 +117,6 @@ class WedstrijdTest extends TestCase
         $wedstrijd = bewaarWedstrijd(['wedstrijdtype_id' => $wedstrijdtype->id]);
 
         $this->assertEquals($wedstrijdtype->id, $wedstrijd->wedstrijdtype_id);
-    }
-
-    /** @test  */
-    public function datumInFormaatDagMaandJaar()
-    {
-        $datum = date('d/m/Y');
-
-        $wedstrijd = bewaarWedstrijd(['datum' => $datum]);
-
-        $this->assertEquals($datum, $wedstrijd->fresh()->datum);
-    }
-
-    /** @test  */
-    public function aanvangInFormaatUrenMinuten()
-    {
-        $aanvang = date('H:i');
-
-        $wedstrijd = bewaarWedstrijd(['aanvang' => $aanvang]);
-
-        $this->assertEquals($aanvang, $wedstrijd->fresh()->aanvang);
     }
 
     /** @test */

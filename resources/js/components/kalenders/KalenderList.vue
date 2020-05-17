@@ -1,7 +1,7 @@
 <template>
-    <ul class="list-group">
+    <div>
         <kalender-item v-for="kalender in kalenders" :kalender="kalender" :key="kalender.id"></kalender-item>
-    </ul>
+    </div>
 </template>
 
 <script>

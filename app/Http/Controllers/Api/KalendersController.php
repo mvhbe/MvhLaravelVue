@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\KalenderResource;
+use App\Http\Resources\WedstrijdResource;
 use App\Kalender;
+use App\Wedstrijd;
 use Illuminate\Http\Request;
+use Prophecy\Argument\Token\AnyValuesToken;
 
 class KalendersController extends Controller
 {
+    const AANTAL_RECORDS = 10;
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,7 @@ class KalendersController extends Controller
      */
     public function index()
     {
-        return KalenderResource::collection(Kalender::simplePaginate(10));
+        return KalenderResource::collection(Kalender::simplePaginate(self::AANTAL_RECORDS));
     }
 
     /**
@@ -46,9 +50,9 @@ class KalendersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Kalender $kalender)
     {
-        //
+        return new KalenderResource(Kalender::find($kalender->id))  ;
     }
 
     /**
@@ -83,5 +87,13 @@ class KalendersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function wedstrijden(Kalender $kalender)
+    {
+        return
+            WedstrijdResource::collection(
+                Wedstrijd::where('kalender_id', '=', $kalender->id)->simplePaginate(self::AANTAL_RECORDS)
+            );
     }
 }

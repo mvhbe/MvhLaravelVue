@@ -13,11 +13,11 @@ $factory->define(
             'kalender_id' => function() {
                 return factory(App\Kalender::class)->create()->id;
             },
-            'datum' => $faker->date('d/m/Y'),
+            'datum' => $faker->date('Y-m-d'),
             'nummer' => $faker->numberBetween(1, 65535),
             'omschrijving' => $faker->sentence(),
             'sponsor' => $faker->sentence,
-            'aanvang' =>$faker->date('H:i'),
+            'aanvang' =>$faker->date('H:i:s'),
             'wedstrijdtype_id' => function() {
                 return factory(App\Wedstrijdtype::class)->create()->id;
             },

@@ -76,4 +76,18 @@ class KalenderTest extends TestCase
         bewaarKalender(['jaar' => $jaar]);
         bewaarKalender(['jaar' => $jaar]);
     }
+
+    /** @test  */
+    public function heeftWedstrijden()
+    {
+        $kalender = bewaarKalender();
+        $eersteWedstrijd = bewaarWedstrijd(['kalender_id' => $kalender->id]);
+        $tweedeWedstrijd = bewaarWedstrijd(['kalender_id' => $kalender->id]);
+
+        $kalenderWedstrijden = $kalender->wedstrijden->toArray();
+
+        $this->assertEquals(2, count($kalenderWedstrijden));
+        $this->assertContains($eersteWedstrijd->toArray(), $kalenderWedstrijden);
+        $this->assertContains($tweedeWedstrijd->toArray(), $kalenderWedstrijden);
+    }
 }

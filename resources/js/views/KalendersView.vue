@@ -6,27 +6,29 @@
         <div v-if="kalenders.length > 0">
             <kalender-list :kalenders="kalenders"></kalender-list>
             <div class="text-center mt-3">
-                <button class="btn btn-primary" @click.prevent="meerKalendersLaden" v-if="next_page_url">Meer kalenders ...</button>
+                <button
+                    class="btn btn-primary"
+                    @click.prevent="meerKalendersLaden"
+                    v-if="next_page_url">Meer kalenders ...
+                </button>
             </div>
         </div>
         <div class="text-center" v-else>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    Geen kalender(s) aanwezig!
-                </li>
-            </ul>
+            <info-card>
+                Geen wedstrijden beschikbaar!
+            </info-card>
         </div>
     </div>
 </template>
 
 <script>
-    import ViewCard from "../components/ViewCard";
+    import InfoCard from "../components/InfoCard";
     import KalenderList from "../components/kalenders/KalenderList";
 
     export default {
         name: "Kalenders",
         components: {
-            ViewCard,
+            InfoCard,
             KalenderList,
         },
         data() {

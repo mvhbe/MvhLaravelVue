@@ -24,8 +24,8 @@ class Kalender extends Model
         return 'jaar';
     }
 
-//    public function wedstrijden()
-//    {
-//        return $this->hasMany(Wedstrijd::class, 'kalender_id', 'id');
-//    }
+    public function wedstrijden()
+    {
+        return $this->hasMany(Wedstrijd::class, 'kalender_id', 'id');
+    }
 }

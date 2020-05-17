@@ -1928,6 +1928,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InfoCard.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/InfoCard.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "InofCard"
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ViewCard.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ViewCard.vue?vue&type=script&lang=js& ***!
@@ -1968,6 +1997,22 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2115,6 +2160,80 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "WedstrijdItem",
+  props: ['wedstrijd']
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WedstrijdItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WedstrijdItem */ "./resources/js/components/wedstrijden/WedstrijdItem.vue");
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "WedstrijdenList",
+  props: ['wedstrijden'],
+  components: {
+    WedstrijdItem: _WedstrijdItem__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/HomeView.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/HomeView.vue?vue&type=script&lang=js& ***!
@@ -2149,7 +2268,25 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_ViewCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/ViewCard */ "./resources/js/components/ViewCard.vue");
+/* harmony import */ var _components_InfoCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/InfoCard */ "./resources/js/components/InfoCard.vue");
+/* harmony import */ var _components_wedstrijden_WedstrijdenList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/wedstrijden/WedstrijdenList */ "./resources/js/components/wedstrijden/WedstrijdenList.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2157,10 +2294,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "KalenderWedstrijdenView",
   components: {
-    ViewCard: _components_ViewCard__WEBPACK_IMPORTED_MODULE_0__["default"]
+    InfoCard: _components_InfoCard__WEBPACK_IMPORTED_MODULE_0__["default"],
+    WedstrijdenList: _components_wedstrijden_WedstrijdenList__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      wedstrijden: [],
+      kalender: null,
+      next_page_url: ""
+    };
+  },
+  methods: {
+    meerWedstrijdenLaden: function meerWedstrijdenLaden() {
+      var _this = this;
+
+      axios.get(this.next_page_url).then(function (response) {
+        response.data.data.forEach(function (wedstrijd) {
+          return _this.wedstrijden.push(wedstrijd);
+        });
+        _this.next_page_url = response.data.links.next;
+      });
+    }
+  },
+  created: function created() {
+    var _this2 = this;
+
+    console.log(this.$route.params.jaar);
+    axios.get("/api/kalenders/".concat(this.$route.params.jaar)).then(function (response) {
+      console.log(response.data.data);
+      _this2.kalender = response.data.data;
+    });
+    axios.get("/api/kalenders/".concat(this.$route.params.jaar, "/wedstrijden")).then(function (response) {
+      console.log(response.data.data);
+      _this2.wedstrijden = response.data.data;
+      _this2.next_page_url = response.data.links.next;
+    });
   }
 });
 
@@ -2175,8 +2347,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_ViewCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/ViewCard */ "./resources/js/components/ViewCard.vue");
+/* harmony import */ var _components_InfoCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/InfoCard */ "./resources/js/components/InfoCard.vue");
 /* harmony import */ var _components_kalenders_KalenderList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/kalenders/KalenderList */ "./resources/js/components/kalenders/KalenderList.vue");
+//
+//
 //
 //
 //
@@ -2203,7 +2377,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Kalenders",
   components: {
-    ViewCard: _components_ViewCard__WEBPACK_IMPORTED_MODULE_0__["default"],
+    InfoCard: _components_InfoCard__WEBPACK_IMPORTED_MODULE_0__["default"],
     KalenderList: _components_kalenders_KalenderList__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
@@ -37925,6 +38099,38 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InfoCard.vue?vue&type=template&id=42c6796e&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/InfoCard.vue?vue&type=template&id=42c6796e&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-lg-6 offset-lg-3" }, [
+      _c("div", { staticClass: "card mb-2 shadow-sm" }, [
+        _c("div", { staticClass: "card-body " }, [
+          _c("p", { staticClass: "card-text" }, [_vm._t("default")], 2)
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ViewCard.vue?vue&type=template&id=0804b240&scoped=true&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ViewCard.vue?vue&type=template&id=0804b240&scoped=true& ***!
@@ -37976,33 +38182,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "li",
-    { staticClass: "list-group-item text-center" },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("span", {
-        staticClass: "mr-3",
-        domProps: { textContent: _vm._s(_vm.kalender.omschrijving) }
-      }),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          staticClass: "btn btn-primary",
-          attrs: {
-            to: {
-              name: "kalenderwedstrijden",
-              params: { jaar: _vm.kalender.jaar }
-            }
-          }
-        },
-        [_vm._v("\n        Wedstrijden\n    ")]
-      )
-    ],
-    1
-  )
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-lg-6 offset-lg-3" }, [
+      _c("div", { staticClass: "card mb-2 shadow-sm" }, [
+        _c("div", { staticClass: "card-body " }, [
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("span", {
+              staticClass: "mr-3",
+              domProps: { textContent: _vm._s(_vm.kalender.omschrijving) }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-flex justify-content-between align-items-center my-3"
+            },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "d-flex justify-content-end" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: {
+                        to: {
+                          name: "kalenderwedstrijden",
+                          params: { jaar: _vm.kalender.jaar }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                            Details"),
+                      _c("i", {
+                        staticClass: "fas fa-arrow-alt-circle-right ml-2"
+                      })
+                    ]
+                  )
+                ],
+                1
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -38014,6 +38246,19 @@ var staticRenderFns = [
       { staticClass: "mr-3", staticStyle: { color: "rgb(59, 139, 182)" } },
       [_c("i", { staticClass: "fas fa-calendar-alt" })]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex justify-content-start" }, [
+      _vm._v(
+        "\n                        # wedstrijden\n                        "
+      ),
+      _c("span", { staticClass: "ml-5 badge-primary badge-pill " }, [
+        _vm._v("100")
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -38038,8 +38283,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "ul",
-    { staticClass: "list-group" },
+    "div",
     _vm._l(_vm.kalenders, function(kalender) {
       return _c("kalender-item", {
         key: kalender.id,
@@ -38189,6 +38433,135 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=template&id=0e566ec2&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=template&id=0e566ec2&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-lg-6 offset-lg-3" }, [
+      _c("div", { staticClass: "card mb-2 shadow-sm" }, [
+        _c("div", { staticClass: "card-body " }, [
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("span", {
+              staticClass: "mr-3",
+              domProps: { textContent: _vm._s(_vm.wedstrijd.omschrijving) }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-flex justify-content-between align-items-center my-3"
+            },
+            [
+              _c("div", { staticClass: "d-flex justify-content-start" }, [
+                _c("span", {
+                  staticClass: "mr-3",
+                  domProps: { textContent: _vm._s(_vm.wedstrijd.datum) }
+                }),
+                _vm._v(" "),
+                _c("span", {
+                  domProps: { textContent: _vm._s(_vm.wedstrijd.aanvang) }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "d-flex justify-content-end" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: {
+                        to: {
+                          name: "westrijduitslag",
+                          params: { jaar: _vm.wedstrijd.id }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                            Uitslag"),
+                      _c("i", {
+                        staticClass: "fas fa-arrow-alt-circle-right ml-2"
+                      })
+                    ]
+                  )
+                ],
+                1
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      { staticClass: "mr-3", staticStyle: { color: "rgb(59, 139, 182)" } },
+      [_c("i", { staticClass: "fas fa-columns" })]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=template&id=e4610e94&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=template&id=e4610e94&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    _vm._l(_vm.wedstrijden, function(wedstrijd) {
+      return _c("wedstrijd-item", {
+        key: wedstrijd.id,
+        attrs: { wedstrijd: wedstrijd }
+      })
+    }),
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/HomeView.vue?vue&type=template&id=7059237a&":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/HomeView.vue?vue&type=template&id=7059237a& ***!
@@ -38230,8 +38603,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("view-card", { attrs: { header: "Deze maand" } }, [
-    _c("p", [_vm._v("Todo : Wedstrijden van kalender")])
+  return _c("div", { staticClass: "mb-5" }, [
+    _c("div", { staticClass: "text-center" }, [
+      _c("h1", [_vm._v(_vm._s(_vm.kalender.omschrijving) + " - Wedstrijden")])
+    ]),
+    _vm._v(" "),
+    _vm.wedstrijden.length > 0
+      ? _c(
+          "div",
+          [
+            _c("wedstrijden-list", { attrs: { wedstrijden: _vm.wedstrijden } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-center mt-3" }, [
+              _vm.next_page_url
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.meerWedstrijdenLaden($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Meer wedstrijden ...\n            ")]
+                  )
+                : _vm._e()
+            ])
+          ],
+          1
+        )
+      : _c(
+          "div",
+          { staticClass: "text-center" },
+          [
+            _c("info-card", [
+              _vm._v("\n            Geen wedstrijden beschikbaar!\n        ")
+            ])
+          ],
+          1
+        )
   ])
 }
 var staticRenderFns = []
@@ -38278,14 +38690,23 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Meer kalenders ...")]
+                    [_vm._v("Meer kalenders ...\n            ")]
                   )
                 : _vm._e()
             ])
           ],
           1
         )
-      : _c("div", { staticClass: "text-center" }, [_vm._m(1)])
+      : _c(
+          "div",
+          { staticClass: "text-center" },
+          [
+            _c("info-card", [
+              _vm._v("\n            Geen wedstrijden beschikbaar!\n        ")
+            ])
+          ],
+          1
+        )
   ])
 }
 var staticRenderFns = [
@@ -38295,16 +38716,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
       _c("h1", [_vm._v("Kalenders")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "list-group" }, [
-      _c("li", { staticClass: "list-group-item" }, [
-        _vm._v("\n                Geen kalender(s) aanwezig!\n            ")
-      ])
     ])
   }
 ]
@@ -53574,6 +53985,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/InfoCard.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/InfoCard.vue ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _InfoCard_vue_vue_type_template_id_42c6796e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InfoCard.vue?vue&type=template&id=42c6796e&scoped=true& */ "./resources/js/components/InfoCard.vue?vue&type=template&id=42c6796e&scoped=true&");
+/* harmony import */ var _InfoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InfoCard.vue?vue&type=script&lang=js& */ "./resources/js/components/InfoCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _InfoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _InfoCard_vue_vue_type_template_id_42c6796e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _InfoCard_vue_vue_type_template_id_42c6796e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "42c6796e",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/InfoCard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/InfoCard.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/InfoCard.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InfoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./InfoCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InfoCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InfoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/InfoCard.vue?vue&type=template&id=42c6796e&scoped=true&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/InfoCard.vue?vue&type=template&id=42c6796e&scoped=true& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InfoCard_vue_vue_type_template_id_42c6796e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./InfoCard.vue?vue&type=template&id=42c6796e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InfoCard.vue?vue&type=template&id=42c6796e&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InfoCard_vue_vue_type_template_id_42c6796e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InfoCard_vue_vue_type_template_id_42c6796e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ViewCard.vue":
 /*!**********************************************!*\
   !*** ./resources/js/components/ViewCard.vue ***!
@@ -53988,6 +54468,144 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/wedstrijden/WedstrijdItem.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/wedstrijden/WedstrijdItem.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WedstrijdItem_vue_vue_type_template_id_0e566ec2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WedstrijdItem.vue?vue&type=template&id=0e566ec2&scoped=true& */ "./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=template&id=0e566ec2&scoped=true&");
+/* harmony import */ var _WedstrijdItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WedstrijdItem.vue?vue&type=script&lang=js& */ "./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _WedstrijdItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _WedstrijdItem_vue_vue_type_template_id_0e566ec2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _WedstrijdItem_vue_vue_type_template_id_0e566ec2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "0e566ec2",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/wedstrijden/WedstrijdItem.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WedstrijdItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./WedstrijdItem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WedstrijdItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=template&id=0e566ec2&scoped=true&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=template&id=0e566ec2&scoped=true& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WedstrijdItem_vue_vue_type_template_id_0e566ec2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./WedstrijdItem.vue?vue&type=template&id=0e566ec2&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/wedstrijden/WedstrijdItem.vue?vue&type=template&id=0e566ec2&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WedstrijdItem_vue_vue_type_template_id_0e566ec2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WedstrijdItem_vue_vue_type_template_id_0e566ec2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/wedstrijden/WedstrijdenList.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/wedstrijden/WedstrijdenList.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WedstrijdenList_vue_vue_type_template_id_e4610e94_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WedstrijdenList.vue?vue&type=template&id=e4610e94&scoped=true& */ "./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=template&id=e4610e94&scoped=true&");
+/* harmony import */ var _WedstrijdenList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WedstrijdenList.vue?vue&type=script&lang=js& */ "./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _WedstrijdenList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _WedstrijdenList_vue_vue_type_template_id_e4610e94_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _WedstrijdenList_vue_vue_type_template_id_e4610e94_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "e4610e94",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/wedstrijden/WedstrijdenList.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WedstrijdenList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./WedstrijdenList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WedstrijdenList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=template&id=e4610e94&scoped=true&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=template&id=e4610e94&scoped=true& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WedstrijdenList_vue_vue_type_template_id_e4610e94_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./WedstrijdenList.vue?vue&type=template&id=e4610e94&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/wedstrijden/WedstrijdenList.vue?vue&type=template&id=e4610e94&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WedstrijdenList_vue_vue_type_template_id_e4610e94_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WedstrijdenList_vue_vue_type_template_id_e4610e94_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/navigation-data.js":
 /*!*****************************************!*\
   !*** ./resources/js/navigation-data.js ***!
@@ -54050,12 +54668,7 @@ var routes = [{
   path: "/kalenders/:jaar/wedstrijden",
   name: "kalenderwedstrijden",
   component: _views_KalenderWedstrijdenView__WEBPACK_IMPORTED_MODULE_4__["default"]
-} // {
-//     path: "/uitslagen",
-//     name: "uitslagen",
-//     component: UitslagenView
-// },
-];
+}];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: "history",
   routes: routes
