@@ -20,7 +20,7 @@ class KalendersController extends Controller
      */
     public function index()
     {
-        return KalenderResource::collection(Kalender::simplePaginate(self::AANTAL_RECORDS));
+        return KalenderResource::collection(Kalender::orderBy('jaar', 'desc')->simplePaginate(self::AANTAL_RECORDS));
     }
 
     /**

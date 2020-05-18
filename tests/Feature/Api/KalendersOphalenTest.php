@@ -38,10 +38,10 @@ class KalendersOphalenTest extends TestCase
     }
 
     /**  @test */
-    public function meerdereKalendersAanwezig()
+    public function sorteringOpKalenderJaarDescending()
     {
-        $firstKalender = bewaarKalender();
-        $secondKalender = bewaarKalender();
+        $firstKalender = bewaarKalender(['jaar' => 2019]);
+        $secondKalender = bewaarKalender(['jaar' => 2020]);
 
         $response = $this->get('/api/kalenders');
 
@@ -49,8 +49,8 @@ class KalendersOphalenTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertEquals(2, count($actualKalenders));
-        $this->assertKalenderAanwezig($firstKalender, $actualKalenders[0]);
-        $this->assertKalenderAanwezig($secondKalender, $actualKalenders[1]);
+        $this->assertKalenderAanwezig($secondKalender, $actualKalenders[0]);
+        $this->assertKalenderAanwezig($firstKalender, $actualKalenders[1]);
     }
 
     /**
