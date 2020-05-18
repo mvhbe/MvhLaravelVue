@@ -1,6 +1,11 @@
 <template>
     <div>
-        <wedstrijd-item v-for="wedstrijd in wedstrijden" :wedstrijd="wedstrijd" :key="wedstrijd.id"></wedstrijd-item>
+        <wedstrijd-item
+            v-for="wedstrijd in wedstrijden" :wedstrijd="wedstrijd"
+            :key="wedstrijd.id"
+            :show-uitslag-link="showUitslagLink"
+        >
+        </wedstrijd-item>
     </div>
 </template>
 
@@ -11,6 +16,7 @@
         name: "WedstrijdenList",
         props: [
             'wedstrijden',
+            'showUitslagLink'
         ],
         components: {
             WedstrijdItem,

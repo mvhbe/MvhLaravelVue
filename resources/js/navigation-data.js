@@ -1,7 +1,7 @@
 const data = {
     brandLink: {
         name: "home",
-        text: "Visclub Moed & Volharding"
+        text: "Visclub Moed & Volharding Herenthout"
     },
     routerLinks: [
         {name: "home", text: "Home"},

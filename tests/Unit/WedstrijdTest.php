@@ -2,6 +2,8 @@
 
 namespace Tests\Unit;
 
+use App\Wedstrijd;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

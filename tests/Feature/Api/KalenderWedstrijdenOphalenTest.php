@@ -36,7 +36,7 @@ class KalenderWedstrijdenOphalenTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertEquals(1, count($actualWedstrijden));
-        $this->assertKalenderAanwezig($expectedWedstrijd, $actualWedstrijden[0]);
+        $this->assertWedstrijdAanwezig($expectedWedstrijd, $actualWedstrijden[0]);
     }
 
     /**  @test
@@ -53,15 +53,15 @@ class KalenderWedstrijdenOphalenTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertEquals(2, count($actualWedstrijden));
-        $this->assertKalenderAanwezig($eersteWedstrijd, $actualWedstrijden[0]);
-        $this->assertKalenderAanwezig($tweedeWedstrijd, $actualWedstrijden[1]);
+        $this->assertWedstrijdAanwezig($eersteWedstrijd, $actualWedstrijden[0]);
+        $this->assertWedstrijdAanwezig($tweedeWedstrijd, $actualWedstrijden[1]);
     }
 
     /**
      * @param $expectedWedsrrijd
      * @param $actualWedstrijd
      */
-    private function assertKalenderAanwezig($expectedWedsrrijd, $actualWedstrijd): void
+    private function assertWedstrijdAanwezig($expectedWedsrrijd, $actualWedstrijd): void
     {
         $this->assertEquals($expectedWedsrrijd->id, $actualWedstrijd["id"]);
         $this->assertEquals($expectedWedsrrijd->datum, $actualWedstrijd["datum"]);

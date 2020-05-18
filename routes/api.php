@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/kalenders', 'Api\KalendersController@index');
 Route::get('/kalenders/{kalender}', 'Api\KalendersController@show');
 Route::get('/kalenders/{kalender}/wedstrijden', 'Api\KalendersController@wedstrijden');
+Route::get('/wedstrijden/huidigemaand', 'Api\WedstrijdenController@huidigeMaand');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

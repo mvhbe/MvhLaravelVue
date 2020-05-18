@@ -17,7 +17,8 @@ class KalenderResource extends JsonResource
         return [
             'id' => $this->id,
             'jaar' => $this->jaar,
-            'omschrijving' => $this->omschrijving()
+            'omschrijving' => $this->omschrijving(),
+            'aantal_wedstrijden' => $this->wedstrijden->count()
         ];
     }
 }

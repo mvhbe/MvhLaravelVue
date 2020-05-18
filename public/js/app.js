@@ -1957,6 +1957,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoadingCard.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LoadingCard.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "InofCard"
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ViewCard.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ViewCard.vue?vue&type=script&lang=js& ***!
@@ -2092,6 +2121,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2202,7 +2232,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "WedstrijdItem",
-  props: ['wedstrijd']
+  props: ['wedstrijd', 'showUitslagLink']
 });
 
 /***/ }),
@@ -2223,10 +2253,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "WedstrijdenList",
-  props: ['wedstrijden'],
+  props: ['wedstrijden', 'showUitslagLink'],
   components: {
     WedstrijdItem: _WedstrijdItem__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -2243,7 +2278,37 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_ViewCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/ViewCard */ "./resources/js/components/ViewCard.vue");
+/* harmony import */ var _components_InfoCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/InfoCard */ "./resources/js/components/InfoCard.vue");
+/* harmony import */ var _components_LoadingCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/LoadingCard */ "./resources/js/components/LoadingCard.vue");
+/* harmony import */ var _components_wedstrijden_WedstrijdenList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/wedstrijden/WedstrijdenList */ "./resources/js/components/wedstrijden/WedstrijdenList.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2251,9 +2316,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ViewCard: _components_ViewCard__WEBPACK_IMPORTED_MODULE_0__["default"]
+    InfoCard: _components_InfoCard__WEBPACK_IMPORTED_MODULE_0__["default"],
+    LoadingCard: _components_LoadingCard__WEBPACK_IMPORTED_MODULE_1__["default"],
+    WedstrijdenList: _components_wedstrijden_WedstrijdenList__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      isLoading: false,
+      next_page_url: "",
+      wedstrijden: [],
+      geenUitslagLink: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.isLoading = true;
+    axios.get("/api/wedstrijden/huidigemaand").then(function (response) {
+      _this.wedstrijden = response.data.data;
+      _this.next_page_url = response.data.links.next;
+    });
+    this.isLoading = false;
   }
 });
 
@@ -2269,7 +2356,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_InfoCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/InfoCard */ "./resources/js/components/InfoCard.vue");
-/* harmony import */ var _components_wedstrijden_WedstrijdenList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/wedstrijden/WedstrijdenList */ "./resources/js/components/wedstrijden/WedstrijdenList.vue");
+/* harmony import */ var _components_LoadingCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/LoadingCard */ "./resources/js/components/LoadingCard.vue");
+/* harmony import */ var _components_wedstrijden_WedstrijdenList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/wedstrijden/WedstrijdenList */ "./resources/js/components/wedstrijden/WedstrijdenList.vue");
 //
 //
 //
@@ -2293,19 +2381,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "KalenderWedstrijdenView",
   components: {
     InfoCard: _components_InfoCard__WEBPACK_IMPORTED_MODULE_0__["default"],
-    WedstrijdenList: _components_wedstrijden_WedstrijdenList__WEBPACK_IMPORTED_MODULE_1__["default"]
+    WedstrijdenList: _components_wedstrijden_WedstrijdenList__WEBPACK_IMPORTED_MODULE_2__["default"],
+    LoadingCard: _components_LoadingCard__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
       wedstrijden: [],
-      kalender: null,
-      next_page_url: ""
+      kalender: {},
+      next_page_url: "",
+      isLoading: true,
+      metUitslagLink: true
     };
   },
   methods: {
@@ -2323,16 +2425,15 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this2 = this;
 
-    console.log(this.$route.params.jaar);
+    this.isLoading = true;
     axios.get("/api/kalenders/".concat(this.$route.params.jaar)).then(function (response) {
-      console.log(response.data.data);
       _this2.kalender = response.data.data;
     });
     axios.get("/api/kalenders/".concat(this.$route.params.jaar, "/wedstrijden")).then(function (response) {
-      console.log(response.data.data);
       _this2.wedstrijden = response.data.data;
       _this2.next_page_url = response.data.links.next;
     });
+    this.isLoading = false;
   }
 });
 
@@ -2348,7 +2449,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_InfoCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/InfoCard */ "./resources/js/components/InfoCard.vue");
-/* harmony import */ var _components_kalenders_KalenderList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/kalenders/KalenderList */ "./resources/js/components/kalenders/KalenderList.vue");
+/* harmony import */ var _components_LoadingCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/LoadingCard */ "./resources/js/components/LoadingCard.vue");
+/* harmony import */ var _components_kalenders_KalenderList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/kalenders/KalenderList */ "./resources/js/components/kalenders/KalenderList.vue");
 //
 //
 //
@@ -2372,18 +2474,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Kalenders",
   components: {
     InfoCard: _components_InfoCard__WEBPACK_IMPORTED_MODULE_0__["default"],
-    KalenderList: _components_kalenders_KalenderList__WEBPACK_IMPORTED_MODULE_1__["default"]
+    KalenderList: _components_kalenders_KalenderList__WEBPACK_IMPORTED_MODULE_2__["default"],
+    LoadingCard: _components_LoadingCard__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
       kalenders: [],
-      next_page_url: ""
+      next_page_url: "",
+      isLoading: false
     };
   },
   methods: {
@@ -2391,7 +2503,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(this.next_page_url).then(function (response) {
-        console.log(response.data);
         response.data.data.forEach(function (kalender) {
           return _this.kalenders.push(kalender);
         });
@@ -2402,11 +2513,12 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this2 = this;
 
+    this.isLoading = true;
     axios.get("/api/kalenders").then(function (response) {
-      console.log(response.data);
       _this2.kalenders = response.data.data;
       _this2.next_page_url = response.data.links.next;
     });
+    this.isLoading = false;
   }
 });
 
@@ -38131,6 +38243,52 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoadingCard.vue?vue&type=template&id=50bc915e&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LoadingCard.vue?vue&type=template&id=50bc915e&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-6 offset-lg-3" }, [
+        _c("div", { staticClass: "card mb-2 shadow-sm" }, [
+          _c("div", { staticClass: "card-body text-center" }, [
+            _c(
+              "div",
+              {
+                staticClass: "spinner-border text-primary",
+                attrs: { role: "status" }
+              },
+              [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
+            )
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ViewCard.vue?vue&type=template&id=0804b240&scoped=true&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ViewCard.vue?vue&type=template&id=0804b240&scoped=true& ***!
@@ -38199,10 +38357,20 @@ var render = function() {
             "div",
             {
               staticClass:
-                "d-flex justify-content-between align-items-center my-3"
+                "d-flex justify-content-between align-items-center mt-3"
             },
             [
-              _vm._m(1),
+              _c("div", { staticClass: "d-flex justify-content-start" }, [
+                _vm._v(
+                  "\n                        # wedstrijden\n                        "
+                ),
+                _c("span", {
+                  staticClass: "ml-5 badge-primary badge-pill",
+                  domProps: {
+                    textContent: _vm._s(_vm.kalender.aantal_wedstrijden)
+                  }
+                })
+              ]),
               _vm._v(" "),
               _c(
                 "div",
@@ -38246,19 +38414,6 @@ var staticRenderFns = [
       { staticClass: "mr-3", staticStyle: { color: "rgb(59, 139, 182)" } },
       [_c("i", { staticClass: "fas fa-calendar-alt" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex justify-content-start" }, [
-      _vm._v(
-        "\n                        # wedstrijden\n                        "
-      ),
-      _c("span", { staticClass: "ml-5 badge-primary badge-pill " }, [
-        _vm._v("100")
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -38465,7 +38620,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "d-flex justify-content-between align-items-center my-3"
+                "d-flex justify-content-between align-items-center mt-3"
             },
             [
               _c("div", { staticClass: "d-flex justify-content-start" }, [
@@ -38479,31 +38634,33 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "d-flex justify-content-end" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: {
-                        to: {
-                          name: "westrijduitslag",
-                          params: { jaar: _vm.wedstrijd.id }
-                        }
-                      }
-                    },
+              _vm.showUitslagLink
+                ? _c(
+                    "div",
+                    { staticClass: "d-flex justify-content-end" },
                     [
-                      _vm._v("\n                            Uitslag"),
-                      _c("i", {
-                        staticClass: "fas fa-arrow-alt-circle-right ml-2"
-                      })
-                    ]
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: {
+                            to: {
+                              name: "westrijduitslag",
+                              params: { jaar: _vm.wedstrijd.id }
+                            }
+                          }
+                        },
+                        [
+                          _vm._v("\n                            Uitslag"),
+                          _c("i", {
+                            staticClass: "fas fa-arrow-alt-circle-right ml-2"
+                          })
+                        ]
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              )
+                : _vm._e()
             ]
           )
         ])
@@ -38549,7 +38706,10 @@ var render = function() {
     _vm._l(_vm.wedstrijden, function(wedstrijd) {
       return _c("wedstrijd-item", {
         key: wedstrijd.id,
-        attrs: { wedstrijd: wedstrijd }
+        attrs: {
+          wedstrijd: wedstrijd,
+          "show-uitslag-link": _vm.showUitslagLink
+        }
       })
     }),
     1
@@ -38577,11 +38737,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("view-card", { attrs: { header: "Deze maand" } }, [
-    _c("p", [_vm._v("Todo : Wedstrijden van deze maand")])
+  return _c("div", [
+    _vm.isLoading ? _c("div", [_c("loading-card")], 1) : _vm._e(),
+    _vm._v(" "),
+    !_vm.isLoading
+      ? _c("div", [
+          _c("div", { staticClass: "mb-5" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm.wedstrijden.length > 0
+              ? _c(
+                  "div",
+                  [
+                    _c("wedstrijden-list", {
+                      attrs: {
+                        wedstrijden: _vm.wedstrijden,
+                        "show-uitslag-link": _vm.geenUitslagLink
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center mt-3" }, [
+                      _vm.next_page_url
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.meerWedstrijdenLaden($event)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "Meer wedstrijden ...\n                    "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ],
+                  1
+                )
+              : _c(
+                  "div",
+                  { staticClass: "text-center" },
+                  [
+                    _c("info-card", [
+                      _vm._v(
+                        "\n                    Geen wedstrijden beschikbaar!\n                "
+                      )
+                    ])
+                  ],
+                  1
+                )
+          ])
+        ])
+      : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("h1", [_vm._v("Deze maand")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -38603,47 +38828,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mb-5" }, [
-    _c("div", { staticClass: "text-center" }, [
-      _c("h1", [_vm._v(_vm._s(_vm.kalender.omschrijving) + " - Wedstrijden")])
-    ]),
+  return _c("div", [
+    _vm.isLoading ? _c("div", [_c("loading-card")], 1) : _vm._e(),
     _vm._v(" "),
-    _vm.wedstrijden.length > 0
-      ? _c(
-          "div",
-          [
-            _c("wedstrijden-list", { attrs: { wedstrijden: _vm.wedstrijden } }),
+    !_vm.isLoading
+      ? _c("div", [
+          _c("div", { staticClass: "mb-5" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _c("h1", [
+                _c("span", {
+                  domProps: { textContent: _vm._s(_vm.kalender.omschrijving) }
+                }),
+                _vm._v(" - Wedstrijden")
+              ])
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "text-center mt-3" }, [
-              _vm.next_page_url
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.meerWedstrijdenLaden($event)
-                        }
+            _vm.wedstrijden.length > 0
+              ? _c(
+                  "div",
+                  [
+                    _c("wedstrijden-list", {
+                      attrs: {
+                        wedstrijden: _vm.wedstrijden,
+                        "show-uitslag-link": _vm.metUitslagLink
                       }
-                    },
-                    [_vm._v("Meer wedstrijden ...\n            ")]
-                  )
-                : _vm._e()
-            ])
-          ],
-          1
-        )
-      : _c(
-          "div",
-          { staticClass: "text-center" },
-          [
-            _c("info-card", [
-              _vm._v("\n            Geen wedstrijden beschikbaar!\n        ")
-            ])
-          ],
-          1
-        )
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center mt-3" }, [
+                      _vm.next_page_url
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.meerWedstrijdenLaden($event)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "Meer wedstrijden ...\n                    "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ],
+                  1
+                )
+              : _c(
+                  "div",
+                  { staticClass: "text-center" },
+                  [
+                    _c("info-card", [
+                      _vm._v(
+                        "\n                    Geen wedstrijden beschikbaar!\n                "
+                      )
+                    ])
+                  ],
+                  1
+                )
+          ])
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -38668,45 +38917,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mb-5" }, [
-    _vm._m(0),
+  return _c("div", [
+    _vm.isLoading ? _c("div", [_c("loading-card")], 1) : _vm._e(),
     _vm._v(" "),
-    _vm.kalenders.length > 0
-      ? _c(
-          "div",
-          [
-            _c("kalender-list", { attrs: { kalenders: _vm.kalenders } }),
+    !_vm.isLoading
+      ? _c("div", [
+          _c("div", { staticClass: "mb-5" }, [
+            _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "text-center mt-3" }, [
-              _vm.next_page_url
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.meerKalendersLaden($event)
-                        }
-                      }
-                    },
-                    [_vm._v("Meer kalenders ...\n            ")]
-                  )
-                : _vm._e()
-            ])
-          ],
-          1
-        )
-      : _c(
-          "div",
-          { staticClass: "text-center" },
-          [
-            _c("info-card", [
-              _vm._v("\n            Geen wedstrijden beschikbaar!\n        ")
-            ])
-          ],
-          1
-        )
+            _vm.kalenders.length > 0
+              ? _c(
+                  "div",
+                  [
+                    _c("kalender-list", {
+                      attrs: { kalenders: _vm.kalenders }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center mt-3" }, [
+                      _vm.next_page_url
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.meerKalendersLaden($event)
+                                }
+                              }
+                            },
+                            [_vm._v("Meer kalenders ...\n                    ")]
+                          )
+                        : _vm._e()
+                    ])
+                  ],
+                  1
+                )
+              : _c(
+                  "div",
+                  { staticClass: "text-center" },
+                  [
+                    _c("info-card", [
+                      _vm._v(
+                        "\n                    Geen wedstrijden beschikbaar!\n                "
+                      )
+                    ])
+                  ],
+                  1
+                )
+          ])
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -54054,6 +54315,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/LoadingCard.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/LoadingCard.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LoadingCard_vue_vue_type_template_id_50bc915e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LoadingCard.vue?vue&type=template&id=50bc915e&scoped=true& */ "./resources/js/components/LoadingCard.vue?vue&type=template&id=50bc915e&scoped=true&");
+/* harmony import */ var _LoadingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoadingCard.vue?vue&type=script&lang=js& */ "./resources/js/components/LoadingCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LoadingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LoadingCard_vue_vue_type_template_id_50bc915e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LoadingCard_vue_vue_type_template_id_50bc915e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "50bc915e",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/LoadingCard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/LoadingCard.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/LoadingCard.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoadingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./LoadingCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoadingCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoadingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/LoadingCard.vue?vue&type=template&id=50bc915e&scoped=true&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/LoadingCard.vue?vue&type=template&id=50bc915e&scoped=true& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoadingCard_vue_vue_type_template_id_50bc915e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LoadingCard.vue?vue&type=template&id=50bc915e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoadingCard.vue?vue&type=template&id=50bc915e&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoadingCard_vue_vue_type_template_id_50bc915e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoadingCard_vue_vue_type_template_id_50bc915e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ViewCard.vue":
 /*!**********************************************!*\
   !*** ./resources/js/components/ViewCard.vue ***!
@@ -54618,7 +54948,7 @@ __webpack_require__.r(__webpack_exports__);
 var data = {
   brandLink: {
     name: "home",
-    text: "Visclub Moed & Volharding"
+    text: "Visclub Moed & Volharding Herenthout"
   },
   routerLinks: [{
     name: "home",

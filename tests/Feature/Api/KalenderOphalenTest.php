@@ -45,5 +45,6 @@ class KalenderOphalenTest extends TestCase
         $this->assertEquals($expectedKalender->id, $actualKalender["id"]);
         $this->assertEquals($expectedKalender->jaar, $actualKalender["jaar"]);
         $this->assertEquals($expectedKalender->omschrijving(), $actualKalender["omschrijving"]);
+        $this->assertEquals($expectedKalender->wedstrijden->count(), $actualKalender["aantal_wedstrijden"]);
     }
 }

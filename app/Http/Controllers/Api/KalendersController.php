@@ -89,6 +89,10 @@ class KalendersController extends Controller
         //
     }
 
+    /**
+     * @param Kalender $kalender
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function wedstrijden(Kalender $kalender)
     {
         return

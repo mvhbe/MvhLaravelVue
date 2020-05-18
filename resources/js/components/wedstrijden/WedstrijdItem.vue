@@ -9,12 +9,12 @@
                         </span>
                         <span class="mr-3" v-text="wedstrijd.omschrijving"></span>
                     </h5>
-                    <div class="d-flex justify-content-between align-items-center my-3">
+                    <div class="d-flex justify-content-between align-items-center mt-3">
                         <div class="d-flex justify-content-start">
                             <span class="mr-3" v-text="wedstrijd.datum"></span>
                             <span v-text="wedstrijd.aanvang"></span>
                         </div>
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end" v-if="showUitslagLink">
                             <router-link
                                 class="btn btn-primary"
                                 :to="{ name: 'westrijduitslag', params: { jaar: wedstrijd.id } }"
@@ -33,7 +33,8 @@
     export default {
         name: "WedstrijdItem",
         props: [
-            'wedstrijd'
+            'wedstrijd',
+            'showUitslagLink'
         ]
     }
 </script>

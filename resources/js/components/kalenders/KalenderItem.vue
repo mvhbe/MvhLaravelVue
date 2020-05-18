@@ -9,10 +9,10 @@
                         </span>
                         <span class="mr-3" v-text="kalender.omschrijving"></span>
                     </h5>
-                    <div class="d-flex justify-content-between align-items-center my-3">
+                    <div class="d-flex justify-content-between align-items-center mt-3">
                         <div class="d-flex justify-content-start">
                             # wedstrijden
-                            <span class="ml-5 badge-primary badge-pill ">100</span>
+                            <span class="ml-5 badge-primary badge-pill" v-text="kalender.aantal_wedstrijden"></span>
                         </div>
                         <div class="d-flex justify-content-end">
                             <router-link

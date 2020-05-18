@@ -19,7 +19,12 @@ class WedstrijdenTableSeeder extends Seeder
             $startDatum = Carbon::create($kalender->jaar, 3, 1, 0, 0, 0);
             foreach(range(1, 15) as $aantalDagen) {
                 factory(Wedstrijd::class)->create(
-                    ["kalender_id" => $kalender->id, "datum" => $startDatum->addDays($aantalDagen)->format('Y-m-d')]
+                    [
+                        "kalender_id" => $kalender->id,
+                        "datum" => $startDatum->addDays($aantalDagen * 2)->format('Y-m-d'),
+                        "omschrijving" => "Ledenwedstrijd MVH - " . $aantalDagen,
+                        "aanvang" => "13:00:00"
+                    ]
                 );
             }
         }
