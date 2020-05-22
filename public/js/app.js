@@ -2057,6 +2057,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "KalenderItem",
   props: ['kalender']
@@ -38372,31 +38374,33 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "d-flex justify-content-end" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: {
-                        to: {
-                          name: "kalenderwedstrijden",
-                          params: { jaar: _vm.kalender.jaar }
-                        }
-                      }
-                    },
+              _vm.kalender.aantal_wedstrijden > 0
+                ? _c(
+                    "div",
+                    { staticClass: "d-flex justify-content-end" },
                     [
-                      _vm._v("\n                            Details"),
-                      _c("i", {
-                        staticClass: "fas fa-arrow-alt-circle-right ml-2"
-                      })
-                    ]
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: {
+                            to: {
+                              name: "kalenderwedstrijden",
+                              params: { jaar: _vm.kalender.jaar }
+                            }
+                          }
+                        },
+                        [
+                          _vm._v("\n                            Wedstrijden"),
+                          _c("i", {
+                            staticClass: "fas fa-arrow-alt-circle-right ml-2"
+                          })
+                        ]
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              )
+                : _vm._e()
             ]
           )
         ])

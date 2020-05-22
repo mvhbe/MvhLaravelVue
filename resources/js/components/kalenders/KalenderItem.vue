@@ -14,12 +14,14 @@
                             # wedstrijden
                             <span class="ml-5 badge-primary badge-pill" v-text="kalender.aantal_wedstrijden"></span>
                         </div>
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end"
+                             v-if="kalender.aantal_wedstrijden > 0"
+                        >
                             <router-link
                                 class="btn btn-primary"
                                 :to="{ name: 'kalenderwedstrijden', params: { jaar: kalender.jaar } }"
                             >
-                                Details<i class="fas fa-arrow-alt-circle-right ml-2"></i>
+                                Wedstrijden<i class="fas fa-arrow-alt-circle-right ml-2"></i>
                             </router-link>
                         </div>
                     </div>
