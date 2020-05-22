@@ -4,8 +4,8 @@
             <div class="card mb-2 shadow-sm">
                 <div class="card-body ">
                     <h5 class="card-title">
-                        <span class="mr-3" style="color: rgb(59, 139, 182);">
-                            <i class="fas fa-columns"></i>
+                        <span class="mr-3" style="color: #2FA4E7;">
+                            <i class="fas fa-database"></i>
                         </span>
                         <span class="mr-3" v-text="wedstrijd.omschrijving"></span>
                     </h5>
@@ -14,10 +14,10 @@
                             <span class="mr-3" v-text="wedstrijd.datum"></span>
                             <span v-text="wedstrijd.aanvang"></span>
                         </div>
-                        <div class="d-flex justify-content-end" v-if="showUitslagLink">
+                        <div class="d-flex justify-content-end" v-if="showUitslagLink && wedstrijd.uitslag_beschikbaar">
                             <router-link
                                 class="btn btn-primary"
-                                :to="{ name: 'westrijduitslag', params: { jaar: wedstrijd.id } }"
+                                :to="{ name: 'wedstrijduitslag', params: { datum: wedstrijd.datum } }"
                             >
                                 Uitslag<i class="fas fa-arrow-alt-circle-right ml-2"></i>
                             </router-link>

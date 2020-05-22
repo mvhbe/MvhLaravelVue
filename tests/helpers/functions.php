@@ -2,6 +2,7 @@
 
 use App\Kalender;
 use App\Reeks;
+use App\Uitslag;
 use App\Wedstrijd;
 use App\Wedstrijdtype;
 
@@ -33,4 +34,14 @@ function bewaarWedstrijd($velden = [])
 function maakWedstrijd($velden = [])
 {
     return factory(Wedstrijd::class)->make($velden);
+}
+
+function bewaarUitslag($velden = [])
+{
+    return factory(Uitslag::class)->create($velden);
+}
+
+function maakUitslag($velden = [])
+{
+    return factory(Uitslag::class)->make($velden);
 }

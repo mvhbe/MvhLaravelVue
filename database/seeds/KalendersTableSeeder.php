@@ -8,11 +8,11 @@ class KalendersTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
+     * @return voi
      */
     public function run()
     {
-        foreach(range(2020, 2000, -1) as $jaar) {
+        foreach(range(date('Y') + 5, date('Y') - 5, -1) as $jaar) {
             factory(Kalender::class)->create(["jaar" => $jaar]);
         }
     }

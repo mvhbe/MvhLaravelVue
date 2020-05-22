@@ -6,24 +6,23 @@
         <div v-if="!isLoading">
             <div class="mb-5">
                 <div class="text-center">
-                    <h1><span v-text="kalender.omschrijving"></span> - Wedstrijden</h1>
+                    <h1><span v-text="wedstrijd.datum"></span> - Uitslag</h1>
                 </div>
-                <div v-if="wedstrijden.length > 0">
-                    <wedstrijden-list
-                        :wedstrijden="wedstrijden"
-                        :show-uitslag-link="metUitslagLink"
-                    ></wedstrijden-list>
+                <div v-if="uitslagList.length > 0">
+                    <uitslag-list
+                        :uitslag-list="uitslagList"
+                    ></uitslag-list>
                     <div class="text-center mt-3">
                         <button
                             class="btn btn-primary"
-                            @click.prevent="meerWedstrijdenLaden"
-                            v-if="next_page_url">Meer wedstrijden ...
+                            @click.prevent="meerLaden"
+                            v-if="next_page_url">Meer ...
                         </button>
                     </div>
                 </div>
                 <div class="text-center" v-else>
                     <info-card>
-                        Geen wedstrijden beschikbaar!
+                        Geen uitslag beschikbaar!
                     </info-card>
                 </div>
             </div>
@@ -32,57 +31,55 @@
 </template>
 
 <script>
-    import InfoCard from "../components/InfoCard";
     import LoadingCard from "../components/LoadingCard";
-    import WedstrijdenList from "../components/wedstrijden/WedstrijdenList";
+    import InfoCard from "../components/InfoCard";
+    import UitslagList from "../components/uitslag/UitslagList";
 
     export default {
-        name: "KalenderWedstrijdenView",
-        components: {
-            InfoCard,
-            WedstrijdenList,
-            LoadingCard,
-        },
+        name: "WedstrijduitslagView",
         data() {
             return {
-                wedstrijden: [],
-                kalender: {},
+                wedstrijd: {},
                 next_page_url: "",
-                isLoading: true,
-                metUitslagLink: true,
+                isLoading: false,
+                uitslagList: []
             }
         },
+        components: {
+            LoadingCard,
+            InfoCard,
+            UitslagList
+        },
         methods: {
-            meerWedstrijdenLaden() {
+            meerLaden() {
                 axios.get(this.next_page_url)
                     .then(
                         response => {
                             response.data.data.forEach(
-                                wedstrijd => this.wedstrijden.push(wedstrijd)
+                                uitslag => this.uitslagList.push(uitslag)
                             )
                             this.next_page_url = response.data.links.next;
                         }
-                    );
+                    )
             }
         },
         created() {
-            this.isLoading = true;
-            axios.get(`/api/kalenders/${this.$route.params.jaar}`)
+            this.isLoading = true
+            let wedstrijdDatum = this.$route.params.datum;
+            axios.get(`/api/wedstrijden/${wedstrijdDatum}`)
                 .then(
                     response => {
-                        this.kalender = response.data.data;
+                        this.wedstrijd = response.data.data;
                     }
                 );
-            axios.get(`/api/kalenders/${this.$route.params.jaar}/wedstrijden`)
+            axios.get(`/api/wedstrijden/${wedstrijdDatum}/uitslag`)
                 .then(
                     response => {
-                        this.wedstrijden = response.data.data;
+                        this.uitslagList = response.data.data;
                         this.next_page_url = response.data.links.next;
                     }
                 )
-                .then(
-                    () => this.isLoading = false
-                );
+            this.isLoading = false;
         }
     }
 </script>

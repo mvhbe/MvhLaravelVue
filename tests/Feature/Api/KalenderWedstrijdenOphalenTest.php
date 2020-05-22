@@ -63,9 +63,9 @@ class KalenderWedstrijdenOphalenTest extends TestCase
      */
     private function assertWedstrijdAanwezig($expectedWedsrrijd, $actualWedstrijd): void
     {
-        $this->assertEquals($expectedWedsrrijd->id, $actualWedstrijd["id"]);
         $this->assertEquals($expectedWedsrrijd->datum, $actualWedstrijd["datum"]);
         $this->assertEquals($expectedWedsrrijd->omschrijving, $actualWedstrijd["omschrijving"]);
         $this->assertEquals($expectedWedsrrijd->aanvang, $actualWedstrijd["aanvang"]);
+        $this->assertEquals($expectedWedsrrijd->uitslag_beschikbaar, $actualWedstrijd["uitslag_beschikbaar"]);
     }
 }

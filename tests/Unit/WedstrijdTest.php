@@ -160,4 +160,38 @@ class WedstrijdTest extends TestCase
 
         $wedstrijdtype->delete();
     }
+
+    /** @test */
+    public function heeftEenUitslag()
+    {
+        $wedstrijd = bewaarWedstrijd();
+        $expectedUitslag = bewaarUitslag(['wedstrijd_id' => $wedstrijd->id]);
+
+        $actualUitslag = $wedstrijd->uitslag->toArray();
+
+        $this->assertEquals(1, count($actualUitslag));
+        $this->assertEquals($expectedUitslag->toArray(), $actualUitslag[0]);
+    }
+
+    /** @test */
+    public function uitslagIsGesorteerdOpVolgorde()
+    {
+        $wedstrijd = bewaarWedstrijd();
+        $tweedeUitslag =  bewaarUitslag(['wedstrijd_id' => $wedstrijd->id, 'volgorde' => 2]);
+        $eersteUitslag =  bewaarUitslag(['wedstrijd_id' => $wedstrijd->id, 'volgorde' => 1]);
+
+        $actualUitslag = $wedstrijd->uitslag->toArray();
+
+        $this->assertEquals(2, count($actualUitslag));
+        $this->assertEquals($eersteUitslag->toArray()["volgorde"], $actualUitslag[0]["volgorde"]);
+        $this->assertEquals($tweedeUitslag->toArray()["volgorde"], $actualUitslag[1]["volgorde"]);
+    }
+
+    /** @test  */
+    public function heeftDatumAlsRouteKeyName()
+    {
+        $wedstrijd = maakWedstrijd();
+
+        $this->assertEquals('datum', $wedstrijd->getRouteKeyName());
+    }
 }

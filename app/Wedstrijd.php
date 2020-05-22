@@ -23,4 +23,14 @@ class Wedstrijd extends Model
     {
         return $this->belongsTo(Kalender::class);
     }
+
+    public function uitslag()
+    {
+        return $this->hasMany(Uitslag::class)->orderBy('volgorde');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'datum';
+    }
 }

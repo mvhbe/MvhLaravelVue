@@ -4,7 +4,7 @@
             <div class="card mb-2 shadow-sm">
                 <div class="card-body ">
                     <h5 class="card-title">
-                        <span class="mr-3" style="color: rgb(59, 139, 182);">
+                        <span class="mr-3" style="color: #2FA4E7;">
                             <i class="fas fa-calendar-alt"></i>
                         </span>
                         <span class="mr-3" v-text="kalender.omschrijving"></span>

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class WedstrijdResource extends JsonResource
+class UitslagResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,11 @@ class WedstrijdResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'datum' => $this->datum,
-            'omschrijving' => $this->omschrijving,
-            'aanvang' => $this->aanvang,
-            'uitslag_beschikbaar' => ($this->uitslag->count() > 0)
+            "volgorde" => $this->volgorde,
+            "gewicht" => $this->gewicht,
+            "str_gewicht" => number_format($this->gewicht, 0, ',', '.'),
+            "deelnemers" => $this->deelnemers,
+            "plaatsen" => $this->plaatsen
         ];
     }
 }
