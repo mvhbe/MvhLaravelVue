@@ -9,8 +9,6 @@ use App\Wedstrijd;
 
 class WedstrijdenController extends Controller
 {
-    const AANTAL_RECORDS = 10;
-
     public function show(Wedstrijd $wedstrijd)
     {
         return new WedstrijdResource(Wedstrijd::find($wedstrijd->id))  ;
@@ -20,7 +18,7 @@ class WedstrijdenController extends Controller
     {
         return
             WedstrijdResource::collection(
-                Wedstrijd::whereRaw("date_format(datum, '%Y%m') = ?", [date('Ym')])->simplePaginate(self::AANTAL_RECORDS)
+                Wedstrijd::whereRaw("date_format(datum, '%Y%m') = ?", [date('Ym')])->get()
             );
     }
 
@@ -28,7 +26,7 @@ class WedstrijdenController extends Controller
     {
         return
             UitslagResource::collection(
-                $wedstrijd->uitslag()->OrderBy('volgorde')->simplePaginate(self::AANTAL_RECORDS)
+                $wedstrijd->uitslag
             );
     }
 }

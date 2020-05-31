@@ -59,7 +59,6 @@ class KalendersOphalenTest extends TestCase
      */
     private function assertKalenderAanwezig($expectedKalender, $actualKalender): void
     {
-        $this->assertEquals($expectedKalender->id, $actualKalender["id"]);
         $this->assertEquals($expectedKalender->jaar, $actualKalender["jaar"]);
         $this->assertEquals($expectedKalender->omschrijving(), $actualKalender["omschrijving"]);
     }

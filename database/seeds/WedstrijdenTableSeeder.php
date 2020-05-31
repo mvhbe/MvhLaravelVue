@@ -18,7 +18,7 @@ class WedstrijdenTableSeeder extends Seeder
             function ($kalender)
             {
                 $startDatum = Carbon::create($kalender->jaar, 3, 1, 0, 0, 0);
-                foreach(range(1, 15) as $aantalDagen) {
+                foreach(range(1, random_int(15, 25)) as $aantalDagen) {
                     factory(Wedstrijd::class)->create(
                         [
                             "kalender_id" => $kalender->id,

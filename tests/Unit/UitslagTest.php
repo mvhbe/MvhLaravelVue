@@ -43,38 +43,57 @@ class UitslagTest extends TestCase
     }
 
     /** @test */
-    public function heeftEenVolgorde()
+    public function heeftEenTotaalGewicht()
     {
-        $volgorde = 1;
-        $uitslag = bewaarUitslag(['volgorde' => $volgorde]);
+        $totaalGewicht = 666;
+        $uitslag = bewaarUitslag(['totaal_gewicht' => $totaalGewicht]);
 
-        $this->assertEquals($volgorde, $uitslag->volgorde);
+        $this->assertEquals($totaalGewicht, $uitslag->totaal_gewicht);
     }
 
     /** @test */
-    public function heeftEenGewicht()
+    public function heeftEenAantalDeelnemers()
     {
-        $gewicht = 666;
-        $uitslag = bewaarUitslag(['gewicht' => $gewicht]);
+        $aantalDeelnemers = 66;
+        $uitslag = bewaarUitslag(['aantal_deelnemers' => $aantalDeelnemers]);
 
-        $this->assertEquals($gewicht, $uitslag->gewicht);
+        $this->assertEquals($aantalDeelnemers, $uitslag->aantal_deelnemers);
     }
 
     /** @test */
-    public function heeftDeelnemers()
+    public function heeftEenGemiddeldGewicht()
     {
-        $deelnemers = 'Guido Van Hoof - Verbruggen René';
-        $uitslag = bewaarUitslag(['deelnemers' => $deelnemers]);
+        $gemiddeldGewicht = 666;
+        $uitslag = bewaarUitslag(['gemiddeld_gewicht' => $gemiddeldGewicht]);
 
-        $this->assertEquals($deelnemers, $uitslag->deelnemers);
+        $this->assertEquals($gemiddeldGewicht, $uitslag->gemiddeld_gewicht);
     }
 
     /** @test */
-    public function heeftPlaatsen()
+    public function heeftDetails()
     {
-        $plaatsen = '1, 33';
-        $uitslag = bewaarUitslag(['plaatsen' => $plaatsen]);
+        $expectedUitslag = bewaarUitslag();
+        $eersteUitslagDetail = bewaarUitslagDetail(["uitslag_id" => $expectedUitslag->id]);
+        $tweedeUitslagDetail = bewaarUitslagDetail(["uitslag_id" => $expectedUitslag->id]);
 
-        $this->assertEquals($plaatsen, $uitslag->plaatsen);
+        $actualUitslagDetails = $expectedUitslag->details->toArray();
+
+        $this->assertCount(2, $actualUitslagDetails);
+        $this->assertContains($eersteUitslagDetail->toArray(), $actualUitslagDetails);
+        $this->assertContains($tweedeUitslagDetail->toArray(), $actualUitslagDetails);
+    }
+
+    /** @test */
+    public function detailsGesorteerdOpVolgorde()
+    {
+        $expectedUitslag = bewaarUitslag();
+        $eersteUitslagDetail = bewaarUitslagDetail(["uitslag_id" => $expectedUitslag->id, "volgorde" => 2]);
+        $tweedeUitslagDetail = bewaarUitslagDetail(["uitslag_id" => $expectedUitslag->id, "volgorde" => 1]);
+
+        $actualUitslagDetails = $expectedUitslag->details->toArray();
+
+        $this->assertCount(2, $actualUitslagDetails);
+        $this->assertEquals($tweedeUitslagDetail->toArray(), $actualUitslagDetails[0]);
+        $this->assertEquals($eersteUitslagDetail->toArray(), $actualUitslagDetails[1]);
     }
 }

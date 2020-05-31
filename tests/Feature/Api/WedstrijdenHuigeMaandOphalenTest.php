@@ -29,9 +29,9 @@ class WedstrijdenHuigeMaandOphalenTest extends TestCase
     /**  @test */
     public function wedstrijdenHuidigeMaandAanwezig()
     {
-        bewaarWedstrijd(['datum' => Carbon::now()->subMonth()->format('Y-m-d')]);
+        bewaarWedstrijd(['datum' => Carbon::now()->subDays(31)->format('Y-m-d')]);
         $wedstrijdHuidigeMaand = bewaarWedstrijd(['datum' => Carbon::now()->format('Y-m-d')]);
-        bewaarWedstrijd(['datum' => Carbon::now()->addMonth()->format('Y-m-d')]);
+        bewaarWedstrijd(['datum' => Carbon::now()->addDays(31)->format('Y-m-d')]);
 
         $response = $this->get(self::URL_HUIDIGEMAAND);
 

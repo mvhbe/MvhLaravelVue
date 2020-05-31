@@ -10,13 +10,6 @@
                 </div>
                 <div v-if="kalenders.length > 0">
                     <kalender-list :kalenders="kalenders"></kalender-list>
-                    <div class="text-center mt-3">
-                        <button
-                            class="btn btn-primary"
-                            @click.prevent="meerKalendersLaden"
-                            v-if="next_page_url">Meer kalenders ...
-                        </button>
-                    </div>
                 </div>
                 <div class="text-center" v-else>
                     <info-card>
@@ -43,22 +36,10 @@
         data() {
             return {
                 kalenders: [],
-                next_page_url: "",
                 isLoading: false,
             }
         },
         methods: {
-            meerKalendersLaden() {
-                axios.get(this.next_page_url)
-                    .then(
-                        response => {
-                            response.data.data.forEach(
-                                kalender => this.kalenders.push(kalender)
-                            )
-                            this.next_page_url = response.data.links.next;
-                        }
-                    );
-            }
         },
         created() {
             this.isLoading = true;
@@ -66,7 +47,6 @@
                 .then(
                     response => {
                         this.kalenders = response.data.data;
-                        this.next_page_url = response.data.links.next;
                     }
                 );
             this.isLoading = false;

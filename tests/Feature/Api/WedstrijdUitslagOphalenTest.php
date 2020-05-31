@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Http\Resources\KalenderResource;
+use App\Http\Resources\UitslagDetailResource;
 use App\Kalender;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
@@ -24,7 +25,24 @@ class WedstrijdUitslagOphalenTest extends TestCase
     }
 
     /**  @test */
-    public function eenUitslagAanwezig()
+    public function uitslagMetDetailAanwezig()
+    {
+        $expectedUitslag = bewaarUitslag();
+        bewaarUitslagDetail(["uitslag_id" => $expectedUitslag->id]);
+
+        $response = $this->get('/api/wedstrijden/' . $expectedUitslag->wedstrijd->datum . "/uitslag");
+
+        $actualUitslag = json_decode($response->content(), true)["data"];
+
+        $response->assertStatus(200);
+        $this->assertUitslagAanwezig($expectedUitslag->toArray(), $actualUitslag[0]);
+        $this->assertUitslagDetailAanwezig(
+            UitslagDetailResource::collection($expectedUitslag->details)->resolve(), $actualUitslag[0]["details"]
+        );
+    }
+
+    /**  @test */
+    public function uitslagZonderDetailAanwezig()
     {
         $expectedUitslag = bewaarUitslag();
 
@@ -33,26 +51,10 @@ class WedstrijdUitslagOphalenTest extends TestCase
         $actualUitslag = json_decode($response->content(), true)["data"];
 
         $response->assertStatus(200);
-        $this->assertEquals(1, count($actualUitslag));
         $this->assertUitslagAanwezig($expectedUitslag->toArray(), $actualUitslag[0]);
-    }
-
-    /**  @test */
-    public function meerdereUitslagenAanwezig()
-    {
-        $wedstrijd = bewaarWedstrijd();
-        bewaarUitslag(['wedstrijd_id' => $wedstrijd->id]);
-        bewaarUitslag(['wedstrijd_id' => $wedstrijd->id]);
-        $expectedUitslag = $wedstrijd->uitslag->toArray();
-
-        $response = $this->get('/api/wedstrijden/' . $wedstrijd->datum . "/uitslag");
-
-        $actualUitslag = json_decode($response->content(), true)["data"];
-
-        $response->assertStatus(200);
-        $this->assertEquals(2, count($actualUitslag));
-        $this->assertUitslagAanwezig($expectedUitslag[0], $actualUitslag[0]);
-        $this->assertUitslagAanwezig($expectedUitslag[1], $actualUitslag[1]);
+        $this->assertUitslagDetailAanwezig(
+            UitslagDetailResource::collection($expectedUitslag->details)->resolve(), $actualUitslag[0]["details"]
+        );
     }
 
     /**
@@ -61,13 +63,21 @@ class WedstrijdUitslagOphalenTest extends TestCase
      */
     private function assertUitslagAanwezig($expectedUitslag, $actualUitslag): void
     {
-        $this->assertEquals($expectedUitslag["volgorde"], $actualUitslag["volgorde"]);
         $this->assertEquals(
-            number_format($expectedUitslag["gewicht"], '0', ',', '.'),
-            $actualUitslag["str_gewicht"]
+            formatteerGewicht($expectedUitslag["totaal_gewicht"]), $actualUitslag["totaal_gewicht"]
         );
-        $this->assertEquals($expectedUitslag["gewicht"], $actualUitslag["gewicht"]);
-        $this->assertEquals($expectedUitslag["deelnemers"], $actualUitslag["deelnemers"]);
-        $this->assertEquals($expectedUitslag["plaatsen"], $actualUitslag["plaatsen"]);
+        $this->assertEquals($expectedUitslag["aantal_deelnemers"], $actualUitslag["aantal_deelnemers"]);
+        $this->assertEquals(
+            formatteerGewicht($expectedUitslag["gemiddeld_gewicht"]), $actualUitslag["gemiddeld_gewicht"]
+        );
+    }
+
+    /**
+     * @param $expectedDetailUitslag
+     * @param $actualUitslagDetail
+     */
+    private function assertUitslagDetailAanwezig($expectedDetailUitslag, $actualUitslagDetail): void
+    {
+        $this->assertEquals($expectedDetailUitslag, $actualUitslagDetail);
     }
 }

@@ -14,13 +14,6 @@
                         :show-uitslag-link="geenUitslagLink"
                     >
                     </wedstrijden-list>
-                    <div class="text-center mt-3">
-                        <button
-                            class="btn btn-primary"
-                            @click.prevent="meerWedstrijdenLaden"
-                            v-if="next_page_url">Meer wedstrijden ...
-                        </button>
-                    </div>
                 </div>
                 <div class="text-center" v-else>
                     <info-card>
@@ -46,7 +39,6 @@
         data() {
             return {
                 isLoading: false,
-                next_page_url: "",
                 wedstrijden:[],
                 geenUitslagLink: false,
             }
@@ -57,10 +49,10 @@
                 .then(
                     response => {
                         this.wedstrijden = response.data.data;
-                        this.next_page_url = response.data.links.next;
                     }
-                );
-            this.isLoading = false;
+                )
+                .catch(error => console.log.error)
+                .then(() => this.isLoading = false);
         }
     }
 </script>

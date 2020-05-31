@@ -13,13 +13,6 @@
                         :wedstrijden="wedstrijden"
                         :show-uitslag-link="metUitslagLink"
                     ></wedstrijden-list>
-                    <div class="text-center mt-3">
-                        <button
-                            class="btn btn-primary"
-                            @click.prevent="meerWedstrijdenLaden"
-                            v-if="next_page_url">Meer wedstrijden ...
-                        </button>
-                    </div>
                 </div>
                 <div class="text-center" v-else>
                     <info-card>
@@ -47,23 +40,11 @@
             return {
                 wedstrijden: [],
                 kalender: {},
-                next_page_url: "",
                 isLoading: true,
                 metUitslagLink: true,
             }
         },
         methods: {
-            meerWedstrijdenLaden() {
-                axios.get(this.next_page_url)
-                    .then(
-                        response => {
-                            response.data.data.forEach(
-                                wedstrijd => this.wedstrijden.push(wedstrijd)
-                            )
-                            this.next_page_url = response.data.links.next;
-                        }
-                    );
-            }
         },
         created() {
             this.isLoading = true;
@@ -77,9 +58,9 @@
                 .then(
                     response => {
                         this.wedstrijden = response.data.data;
-                        this.next_page_url = response.data.links.next;
                     }
                 )
+                .catch( error => console.log)
                 .then(
                     () => this.isLoading = false
                 );

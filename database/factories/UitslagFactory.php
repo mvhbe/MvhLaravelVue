@@ -11,9 +11,8 @@ $factory->define(Uitslag::class, function (Faker $faker) {
         'wedstrijd_id' => function() {
             return factory(Wedstrijd::class)->create()->id;
         },
-        'volgorde' => $faker->randomNumber(2),
-        'gewicht' => $faker->randomNumber(5),
-        'deelnemers' => $faker->text(75),
-        'plaatsen' => $faker->text(15)
+        'totaal_gewicht' => $faker->randomNumber(6),
+        'aantal_deelnemers' => $faker->randomNumber(2),
+        'gemiddeld_gewicht' => $faker->randomNumber(5),
     ];
 });

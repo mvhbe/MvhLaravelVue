@@ -26,7 +26,7 @@ class Wedstrijd extends Model
 
     public function uitslag()
     {
-        return $this->hasMany(Uitslag::class)->orderBy('volgorde');
+        return $this->hasMany(Uitslag::class);
     }
 
     public function getRouteKeyName()

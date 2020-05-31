@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class KalenderResource extends JsonResource
+class UitslagDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,10 @@ class KalenderResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'jaar' => $this->jaar,
-            'omschrijving' => $this->omschrijving(),
-            'aantal_wedstrijden' => $this->wedstrijden->count()
+            "volgorde" => $this->volgorde,
+            "gewicht" => number_format($this->gewicht, 0, ',', '.'),
+            "deelnemers" => $this->deelnemers,
+            "plaatsen" => $this->plaatsen
         ];
     }
 }

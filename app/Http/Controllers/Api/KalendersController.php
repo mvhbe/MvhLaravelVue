@@ -12,7 +12,6 @@ use Prophecy\Argument\Token\AnyValuesToken;
 
 class KalendersController extends Controller
 {
-    const AANTAL_RECORDS = 10;
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +19,7 @@ class KalendersController extends Controller
      */
     public function index()
     {
-        return KalenderResource::collection(Kalender::orderBy('jaar', 'desc')->simplePaginate(self::AANTAL_RECORDS));
+        return KalenderResource::collection(Kalender::orderBy('jaar', 'desc')->get());
     }
 
     /**
@@ -97,7 +96,7 @@ class KalendersController extends Controller
     {
         return
             WedstrijdResource::collection(
-                Wedstrijd::where('kalender_id', '=', $kalender->id)->simplePaginate(self::AANTAL_RECORDS)
+                Wedstrijd::where('kalender_id', '=', $kalender->id)->get()
             );
     }
 }

@@ -16,10 +16,9 @@ class CreateUitslagenTable extends Migration
         Schema::create('uitslagen', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('wedstrijd_id');
-            $table->unsignedTinyInteger('volgorde');
-            $table->unsignedMediumInteger('gewicht');
-            $table->string('deelnemers');
-            $table->string('plaatsen');
+            $table->unsignedInteger('totaal_gewicht');
+            $table->unsignedTinyInteger('aantal_deelnemers');
+            $table->unsignedInteger('gemiddeld_gewicht');
             $table->timestamps();
 
             $table->foreign('wedstrijd_id')->references('id')->on('wedstrijden');
@@ -33,6 +32,6 @@ class CreateUitslagenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uitslags');
+        Schema::dropIfExists('uitslagen');
     }
 }

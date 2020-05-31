@@ -8,17 +8,16 @@
                 <div class="text-center">
                     <h1><span v-text="wedstrijd.datum"></span> - Uitslag</h1>
                 </div>
-                <div v-if="uitslagList.length > 0">
-                    <uitslag-list
-                        :uitslag-list="uitslagList"
-                    ></uitslag-list>
-                    <div class="text-center mt-3">
-                        <button
-                            class="btn btn-primary"
-                            @click.prevent="meerLaden"
-                            v-if="next_page_url">Meer ...
-                        </button>
-                    </div>
+                <uitslag-summary
+                    :aantal-deelnemers="uitslag['aantal_deelnemers']"
+                    :totaal-gewicht="uitslag['totaal_gewicht']"
+                    :gemiddeld-gewicht="uitslag['gemiddeld_gewicht']"
+                >
+                </uitslag-summary>
+                <div v-if="uitslag">
+                    <uitslag-detail-list
+                        :uitslag-detail-list="uitslag.details"
+                    ></uitslag-detail-list>
                 </div>
                 <div class="text-center" v-else>
                     <info-card>
@@ -33,35 +32,35 @@
 <script>
     import LoadingCard from "../components/LoadingCard";
     import InfoCard from "../components/InfoCard";
-    import UitslagList from "../components/uitslag/UitslagList";
+    import UitslagSummary from "../components/uitslag/UitslagSummary";
+    import UitslagDetailList from "../components/uitslag/UitslagDetailList";
 
     export default {
         name: "WedstrijduitslagView",
         data() {
             return {
                 wedstrijd: {},
-                next_page_url: "",
                 isLoading: false,
-                uitslagList: []
+                uitslag: {}
             }
         },
         components: {
             LoadingCard,
             InfoCard,
-            UitslagList
+            UitslagSummary,
+            UitslagDetailList
         },
         methods: {
-            meerLaden() {
-                axios.get(this.next_page_url)
-                    .then(
-                        response => {
-                            response.data.data.forEach(
-                                uitslag => this.uitslagList.push(uitslag)
-                            )
-                            this.next_page_url = response.data.links.next;
-                        }
-                    )
-            }
+            // meerLaden() {
+            //     axios.get(this.next_page_url)
+            //         .then(
+            //             response => {
+            //                 response.data.data.forEach(
+            //                     uitslag => this.uitslag.push(uitslag)
+            //                 )
+            //             }
+            //         )
+            // }
         },
         created() {
             this.isLoading = true
@@ -75,11 +74,12 @@
             axios.get(`/api/wedstrijden/${wedstrijdDatum}/uitslag`)
                 .then(
                     response => {
-                        this.uitslagList = response.data.data;
-                        this.next_page_url = response.data.links.next;
+                        this.uitslag = response.data.data[0];
                     }
                 )
-            this.isLoading = false;
+                .then(
+                    this.isLoading = false
+                );
         }
     }
 </script>

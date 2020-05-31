@@ -1,8 +1,8 @@
 <?php
 
 use App\Kalender;
-use App\Reeks;
 use App\Uitslag;
+use App\UitslagDetail;
 use App\Wedstrijd;
 use App\Wedstrijdtype;
 
@@ -44,4 +44,19 @@ function bewaarUitslag($velden = [])
 function maakUitslag($velden = [])
 {
     return factory(Uitslag::class)->make($velden);
+}
+
+function bewaarUitslagDetail($velden = [])
+{
+    return factory(UitslagDetail::class)->create($velden);
+}
+
+function maakUitslagDetail($velden = [])
+{
+    return factory(UitslagDetail::class)->make($velden);
+}
+
+function formatteerGewicht($gewicht)
+{
+    return number_format($gewicht, 0, ',', '.');
 }

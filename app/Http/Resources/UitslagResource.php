@@ -15,11 +15,10 @@ class UitslagResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "volgorde" => $this->volgorde,
-            "gewicht" => $this->gewicht,
-            "str_gewicht" => number_format($this->gewicht, 0, ',', '.'),
-            "deelnemers" => $this->deelnemers,
-            "plaatsen" => $this->plaatsen
+            "totaal_gewicht" => number_format($this->totaal_gewicht, 0, ',', '.'),
+            "aantal_deelnemers" => $this->aantal_deelnemers,
+            "gemiddeld_gewicht" => number_format($this->gemiddeld_gewicht, 0, ',', '.'),
+            "details" => UitslagDetailResource::collection($this->details()->get())
         ];
     }
 }
