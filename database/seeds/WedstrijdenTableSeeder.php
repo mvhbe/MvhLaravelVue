@@ -2,6 +2,7 @@
 
 use App\Kalender;
 use App\Wedstrijd;
+use App\Wedstrijdtype;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +15,7 @@ class WedstrijdenTableSeeder extends Seeder
      */
     public function run()
     {
-        $kalenders = Kalender::all()->each(
+        Kalender::all()->each(
             function ($kalender)
             {
                 $startDatum = Carbon::create($kalender->jaar, 3, 1, 0, 0, 0);
@@ -24,7 +25,8 @@ class WedstrijdenTableSeeder extends Seeder
                             "kalender_id" => $kalender->id,
                             "datum" => $startDatum->addDays($aantalDagen * 2)->format('Y-m-d'),
                             "omschrijving" => "Ledenwedstrijd MVH - " . $aantalDagen,
-                            "aanvang" => "13:00:00"
+                            "aanvang" => "13:00:00",
+                            "wedstrijdtype_id" => 1
                         ]
                     );
                 }

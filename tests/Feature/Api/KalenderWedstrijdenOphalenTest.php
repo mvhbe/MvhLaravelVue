@@ -4,6 +4,7 @@ namespace Tests\Feature\Api;
 
 use App\Http\Resources\KalenderResource;
 use App\Kalender;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Tests\TestCase;
@@ -41,11 +42,15 @@ class KalenderWedstrijdenOphalenTest extends TestCase
 
     /**  @test
      */
-    public function meerdereKalenderWedstrijdenAanwezig()
+    public function wedstrijdenGesorteerdOpDatum()
     {
         $kalender = bewaarKalender();
-        $eersteWedstrijd = bewaarWedstrijd(["kalender_id" => $kalender->id]);
-        $tweedeWedstrijd = bewaarWedstrijd(["kalender_id" => $kalender->id]);
+        $eersteWedstrijd = bewaarWedstrijd(
+            ["kalender_id" => $kalender->id, "datum" => Carbon::now()->addDay()->format('Y-m-d')]
+        );
+        $tweedeWedstrijd = bewaarWedstrijd(
+            ["kalender_id" => $kalender->id, "datum" => Carbon::now()->format('Y-m-d')]
+        );
 
         $response = $this->get('/api/kalenders/' . $kalender->jaar . '/wedstrijden');
 
@@ -53,8 +58,8 @@ class KalenderWedstrijdenOphalenTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertEquals(2, count($actualWedstrijden));
-        $this->assertWedstrijdAanwezig($eersteWedstrijd, $actualWedstrijden[0]);
-        $this->assertWedstrijdAanwezig($tweedeWedstrijd, $actualWedstrijden[1]);
+        $this->assertWedstrijdAanwezig($tweedeWedstrijd, $actualWedstrijden[0]);
+        $this->assertWedstrijdAanwezig($eersteWedstrijd, $actualWedstrijden[1]);
     }
 
     /**

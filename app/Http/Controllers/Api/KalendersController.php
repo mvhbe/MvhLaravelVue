@@ -96,7 +96,9 @@ class KalendersController extends Controller
     {
         return
             WedstrijdResource::collection(
-                Wedstrijd::where('kalender_id', '=', $kalender->id)->get()
+                Wedstrijd::where('kalender_id', '=', $kalender->id)
+                    ->OrderBy("datum")
+                    ->get()
             );
     }
 }
