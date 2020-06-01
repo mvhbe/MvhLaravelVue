@@ -55386,7 +55386,7 @@ __webpack_require__.r(__webpack_exports__);
 var data = {
   brandLink: {
     name: "home",
-    text: "Visclub Moed & Volharding Herenthout"
+    text: "Visclub MVH"
   },
   routerLinks: [{
     name: "home",
@@ -55394,8 +55394,7 @@ var data = {
   }, {
     name: "kalenders",
     text: "Kalenders"
-  } // {name: "uitslagen", text: "Uitslagen"},
-  ]
+  }]
 };
 /* harmony default export */ __webpack_exports__["default"] = (data);
 
